@@ -9,3 +9,4 @@ SQLAlchemy==1.4.39
 sqlparse==0.4.2
 tzdata==2022.1
 tzlocal==4.2
+python-dotenv==0.20.0

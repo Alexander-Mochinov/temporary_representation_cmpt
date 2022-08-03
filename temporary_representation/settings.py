@@ -1,7 +1,13 @@
+import os
 from pathlib import Path
 
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
+
+from dotenv import load_dotenv
+
+env_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,13 +17,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@hbxt+9le*rg(6_$t2q#+77=2-n78gl#l%ew)jyeq8+msdp#=$'
+SECRET_KEY = os.getenv('SECRET_KEY', False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =  os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = ['*', ]
-
+ALLOWED_HOSTS = [
+    os.getenv('ALLOWED_HOSTS', '*'),
+]
 
 # Application definition
 
