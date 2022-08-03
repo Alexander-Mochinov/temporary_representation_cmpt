@@ -1,6 +1,6 @@
 from typing import Any
 from .execution_state import ExecutionState
-from temporary_representation.cron_module.models import (
+from cron_module.models import (
     Schedule,
     Notification,
 )

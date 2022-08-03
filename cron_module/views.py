@@ -5,15 +5,14 @@ from django.conf import settings
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from cron_module import Reminder, Notification
-from temporary_representation.misc import (
+from cron_module.misc import (
     ExceptionState,
 )
 
-
 scheduler = BackgroundScheduler(
-    jobstores=settings.jobstores, 
-    executors=settings.executors, 
-    job_defaults=settings.job_defaults, 
+    jobstores=settings.JOBSTORES, 
+    executors=settings.EXECUTORS, 
+    job_defaults=settings.JOB_DEFAULTS, 
     timezone=utc,
 )
 scheduler.start()

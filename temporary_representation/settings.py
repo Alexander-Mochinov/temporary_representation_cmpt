@@ -12,6 +12,20 @@ load_dotenv(env_path)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Schedule Settings
+
+JOBSTORES = {
+    'default': SQLAlchemyJobStore(url='sqlite:///db.sqlite3')
+}
+EXECUTORS = {
+    'default': ThreadPoolExecutor(20),
+    'processpool': ProcessPoolExecutor(5)
+}
+JOB_DEFAULTS = {
+    'coalesce': False,
+    'max_instances': 3
+}
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -120,17 +134,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Schedule Settings
-
-jobstores = {
-    'default': SQLAlchemyJobStore(url='sqlite:///db.sqlite3')
-}
-executors = {
-    'default': ThreadPoolExecutor(20),
-    'processpool': ProcessPoolExecutor(5)
-}
-job_defaults = {
-    'coalesce': False,
-    'max_instances': 3
-}
